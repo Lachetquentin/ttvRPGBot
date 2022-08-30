@@ -1,0 +1,94 @@
+client.on("chat", function(channel, userstate, message, self) {
+    var current_time = new Date().getTime();
+    if (adventure_off_cd_time != 0 && current_time - adventure_off_cd_time > auto_adventure_launch_cd * 60 * 1000) // X mins * 60 secs/min * 1000 millisecs/sec
+    {
+        adventure_start_time = current_time;
+        adventure_off_cd_time = current_time;
+        createMonster(channel);
+        client.say(channel, "⚡️ Un "+game.monster.name+ " vient d’apparaître ! Écrivez ❗️bagarre pour rejoindre le combat et recevoir du loot ! ("+game.monster.health+" ❤️PV)");
+    }
+})
+
+function createItems() {
+    var roll, category, rarity;
+
+    const createdItems = {
+        ...objet
+    };
+
+    roll = Math.floor(Math.random() * itemsRarity.length);
+    rarity = itemsRarity[roll];
+
+    createdItems.rarity = rarity;
+
+    roll = Math.floor(Math.random() * 10);
+
+    switch (roll) {
+        case 0:
+            category = "Chapeau";
+
+            break;
+
+        case 1:
+            category = "Amulette";
+
+            break;
+
+        case 2:
+            category = "Arme";
+
+            break;
+
+        case 3:
+            category = "Bouclier";
+
+            break;
+
+        case 4:
+            category = "Anneau";
+
+            break;
+
+        case 5:
+            category = "Cape";
+
+            break;
+
+        case 6:
+            category = "Ceinture";
+
+            break;
+
+        case 7:
+            category = "Familier";
+
+            break;
+
+        case 8:
+            category = "Bottes";
+
+            break;
+
+        case 9:
+            category = "Relique";
+
+            break;
+
+        default:
+            break;
+    }
+
+    createdItems.category = category;
+    game.objet = createdItems;
+
+}
+
+     if (dmg === 0) {
+         client.say(channel, "🔥 " + game.monster.name + " a été attaqué mais n'as reçu aucun dégâts ! FailFish");
+
+     } else if (dmg >= player.level * 10) {
+         client.say(channel, "🔥 " + game.monster.name + " a été attaqué et a perdu " + dmg + " ❤️PV ! ( " + game.monster.health + " ❤️PV restant) " + " Coup critique ! CurseLit KAPOW CurseLit");
+
+     } else {
+         client.say(channel, "🔥 " + game.monster.name + " a été attaqué et a perdu " + dmg + " ❤️PV ! ( " + game.monster.health + " ❤️PV restant) " + " KAPOW ");
+     }

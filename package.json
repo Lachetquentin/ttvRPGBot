@@ -1,0 +1,15 @@
+{
+  "name": "ttvrpgbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ushysder_",
+  "license": "ISC",
+  "dependencies": {
+    "tmi.js": "^1.8.3",
+    "yarn": "^1.22.11"
+  }
+}
